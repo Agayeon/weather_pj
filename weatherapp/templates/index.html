@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>🌤️ 날씨 시각화</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <h1 class="display-5 fw-bold text-primary">🌤️ 오늘의 날씨 시각화</h1>
+      <p class="lead text-muted">지역을 입력하면 날씨 정보와 그래프를 보여줍니다.</p>
+    </div>
+
+    <div class="card shadow-sm p-4">
+      <form method="GET">
+        <div class="row g-3 align-items-center">
+          <div class="col-sm-9">
+            <input type="text" name="location" class="form-control form-control-lg" placeholder="예: 서울" required>
+          </div>
+          <div class="col-sm-3 text-end">
+            <button type="submit" class="btn btn-primary btn-lg w-100">날씨 조회</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% if weather %}
+      <div class="card shadow-sm mt-4 p-4">
+        <h2 class="h4">{{ location }} 날씨</h2>
+        <p class="text-muted">{{ weather }}</p>
+        <img src="{% static 'graph.png' %}" alt="날씨 그래프" style="max-width: 100%; height: auto; width: 300px;" class="img-fluid rounded">
+
+      </div>
+    {% endif %}
+  </div>
+
+</body>
+</html>
